@@ -1,6 +1,11 @@
+from datetime import datetime
+from enum import Enum
+
 from pydantic import BaseModel, Field
+from sqlmodel import SQLModel, Field
 from typing import Annotated, Literal
 
+# Robot Movement Models
 class Direction(str, Enum):
    north = "north"
    south = "south"
@@ -18,3 +23,11 @@ class Command(BaseModel):
 class RobotMoveRequest(BaseModel):
     start: Coords
     commands: list[Command]
+
+# DB Models
+class Executions(SQLModel, table=True):
+  id: int | None = Field(default=None, primary_key=True)
+  timestamp: datetime = Field(default_factory=datetime.now)
+  commands: int
+  result: int
+  duration: float
