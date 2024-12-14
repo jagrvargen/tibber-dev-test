@@ -4,7 +4,9 @@ from typing import Annotated
 
 from dotenv import load_dotenv
 from fastapi import Depends
-from sqlmodel import Field, Session, SQLModel, create_engine
+from sqlmodel import Session, SQLModel, create_engine
+
+from .models.models import Execution
 
 load_dotenv()
 
@@ -12,13 +14,6 @@ db_user = getenv("POSTGRES_USER")
 db_password = getenv("POSTGRES_PASSWORD")
 db_host = getenv("POSTGRES_HOST")
 db_name = getenv("POSTGRES_DB")
-
-class Execution(SQLModel, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-    timestamp: datetime = Field(default_factory=datetime.now)
-    commands: int
-    result: int
-    duration: float
 
 DB_URL = f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}"
 
@@ -32,3 +27,8 @@ def get_session():
         yield session
 
 SessionDependency = Annotated[Session, Depends(get_session)]
+
+def commit_execution(execution: Execution, session: SessionDependency):
+    session.add(execution)
+    session.commit()
+    session.refresh(execution)
