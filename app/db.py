@@ -1,4 +1,5 @@
 from datetime import datetime
+from os import getenv
 from typing import Annotated
 
 from dotenv import load_dotenv
@@ -7,6 +8,11 @@ from sqlmodel import Field, Session, SQLModel, create_engine
 
 load_dotenv()
 
+db_user = getenv("POSTGRES_USER")
+db_password = getenv("POSTGRES_PASSWORD")
+db_host = getenv("POSTGRES_HOST")
+db_name = getenv("POSTGRES_DB")
+
 class Execution(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     timestamp: datetime = Field(default_factory=datetime.now)
@@ -14,7 +20,7 @@ class Execution(SQLModel, table=True):
     result: int
     duration: float
 
-DB_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}"
+DB_URL = f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}"
 
 engine = create_engine(DB_URL)
 

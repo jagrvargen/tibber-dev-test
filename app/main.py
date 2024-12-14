@@ -1,4 +1,4 @@
-from time import perf_counter()
+from time import perf_counter
 
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
