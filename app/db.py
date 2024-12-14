@@ -9,7 +9,7 @@ load_dotenv()
 
 class Execution(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    timestamp: datetime
+    timestamp: datetime = Field(default_factory=datetime.now)
     commands: int
     result: int
     duration: float
