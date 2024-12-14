@@ -1,6 +1,6 @@
 from enum import Enum
 
-from .models.models import Command, Direction
+from ..models.models import Command, Direction
 
 def clean_office(x: int, y: int, commands: list[Command]):
     cleaned_tiles = set()

@@ -21,3 +21,4 @@ def test_move_robot():
             }
     )
     assert resp.status_code == 200
+    assert resp == {}
