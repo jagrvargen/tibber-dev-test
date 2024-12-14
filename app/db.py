@@ -5,12 +5,10 @@ from dotenv import load_dotenv
 from fastapi import Depends
 from sqlmodel import Field, Session, SQLModel, create_engine
 
-from .main import app
-
 load_dotenv()
 
 class Execution(SQLModel, table=True):
-    id: int = Field(primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     timestamp: datetime
     commands: int
     result: int
@@ -28,7 +26,3 @@ def get_session():
         yield session
 
 SessionDependency = Annotated[Session, Depends(get_session)]
-
-@app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
