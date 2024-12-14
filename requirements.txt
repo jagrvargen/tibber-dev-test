@@ -1,2 +1,2 @@
 fastapi[standard]>=0.115
-pydantic>=2.10
+pytest>=7.4
