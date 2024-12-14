@@ -1,12 +1,6 @@
 from enum import Enum
 
-from .models.models import Command
-
-class Direction(str, Enum):
-    north = "north"
-    south = "south"
-    east  = "east"
-    west  = "west"
+from .models.models import Command, Direction
 
 def clean_office(x: int, y: int, commands: list[Command]):
     cleaned_tiles = set()
