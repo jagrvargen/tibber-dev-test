@@ -1,11 +1,11 @@
-FROM python:3.11-slim
+FROM python:3.11
 
-WORKDIR /code
+WORKDIR /tibber-dev-test
 
-COPY ./requirements.txt /code/requirements.txt
+COPY ./requirements.txt requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-COPY ./app /code/app
+COPY ./app app
 
-CMD ["fastapi", "run", "/app/main.py", "--port", "80"]
+CMD ["python", "-m", "fastapi", "run", "app/main.py", "--port", "80"]
