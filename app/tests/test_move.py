@@ -39,3 +39,13 @@ def test_move_robot_alternate_starting_position():
     result = clean_office(1, 1, commands)
 
     assert result == 5
+
+def test_ten_thousand_commands():
+    """Test robot movement with 10,000 commands"""
+    commands = [
+        Command(direction=Direction.north, steps=1),
+    ] * 10000
+
+    result = clean_office(0, 0, commands)
+
+    assert result == 10001

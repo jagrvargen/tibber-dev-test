@@ -65,8 +65,19 @@ def test_move_robot_invalid_start(client):
     response = client.post("/tibber-developer-test/enter-path/", json=test_payload)
     assert response.status_code == 422
 
-def test_move_robot_invalid_command(client):
-    """Test robot movement with invalid command"""
+def test_move_robot_invalid_direction(client):
+    """Test robot movement with invalid direction"""
+    test_payload = {
+        "start": {"x": 0, "y": 0},
+        "commands": [
+            {"direction": "invalid", "steps": 1}
+        ]
+    }
+    response = client.post("/tibber-developer-test/enter-path/", json=test_payload)
+    assert response.status_code == 422
+
+def test_move_robot_invalid_steps(client):
+    """Test robot movement with invalid number of steps"""
     test_payload = {
         "start": {"x": 0, "y": 0},
         "commands": [
