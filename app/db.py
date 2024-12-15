@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
 
-from .models.models import Execution
+from .models.models import Executions
 
 load_dotenv()
 
@@ -28,7 +28,9 @@ def get_session():
 
 SessionDependency = Annotated[Session, Depends(get_session)]
 
-def commit_execution(execution: Execution, session: SessionDependency):
+def commit_execution(execution: Executions, session: SessionDependency):
     session.add(execution)
     session.commit()
     session.refresh(execution)
+
+    return execution
