@@ -1,14 +1,14 @@
 import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import Mock, patch
-from ..main import app
-from ..db import get_session, create_db_and_tables
+from app.main import app
+from app.db.db import get_session, create_db_and_tables
 
 @pytest.fixture(autouse=True)
 def mock_db():
     """Mock database and engine operations"""
-    with patch('app.db.engine'), \
-         patch('app.db.create_db_and_tables'), \
+    with patch('app.db.db.engine'), \
+         patch('app.db.db.create_db_and_tables'), \
          patch('app.main.create_db_and_tables'):
         yield
 

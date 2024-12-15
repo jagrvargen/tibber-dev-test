@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
 from app.models.models import Executions, Command, Direction
-from app.db import get_session, commit_execution
+from app.db.db import get_session, commit_execution
 from .conftest import app, client
 
 def test_move_robot_empty_commands(client):

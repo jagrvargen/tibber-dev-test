@@ -7,13 +7,15 @@ This is a toy microservice created as part of the interview process for a Backen
 - Docker
 - Docker Compose
 - Postman (optional, for testing)
+- Python 3.11+
+- pytest
 
 ### Setup Instructions
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd [repository-name]
+git clone git@github.com:jagrvargen/tibber-dev-test.git
+cd tibber-dev-test
 ```
 
 2. Create your environment file:
@@ -26,6 +28,32 @@ You can modify the values in `.env` if needed, or use the default values provide
 ```bash
 docker-compose build
 docker-compose up
+```
+
+### Running Tests
+
+The project includes a test suite built with pytest. To run the tests:
+
+1. Install the required Python packages (preferably in a virtual environment):
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+2. Run the test suite:
+```bash
+pytest tests/
+```
+
+For more verbose output, use:
+```bash
+pytest -v tests/
+```
+
+To generate a coverage report:
+```bash
+pytest --cov=src tests/
 ```
 
 ### Testing the Service

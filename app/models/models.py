@@ -1,9 +1,8 @@
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from sqlmodel import SQLModel, Field
-from typing import Annotated, Literal
 
 # Robot Movement Models
 class Direction(str, Enum):

@@ -3,7 +3,7 @@ from time import perf_counter
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 
-from app.db import SessionDependency, create_db_and_tables, commit_execution
+from app.db.db import SessionDependency, create_db_and_tables, commit_execution
 from app.models.models import Executions, RobotMoveRequest 
 from app.actions.move import clean_office
 

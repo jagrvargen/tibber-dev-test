@@ -1,5 +1,3 @@
-from enum import Enum
-
 from app.models.models import Command, Direction
 
 def clean_office(x: int, y: int, commands: list[Command]):
