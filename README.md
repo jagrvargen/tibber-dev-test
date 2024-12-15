@@ -38,7 +38,7 @@ The project includes a test suite built with pytest. To run the tests:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 2. Run the test suite:
