@@ -3,6 +3,7 @@ from enum import Enum
 from app.models.models import Command, Direction
 
 def clean_office(x: int, y: int, commands: list[Command]):
+    """Clean the office floor and return the number of cleaned tiles"""
     cleaned_tiles = set()
     cleaned_tiles.add((x, y))
     directions = {
