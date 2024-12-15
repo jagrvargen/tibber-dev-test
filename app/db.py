@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
 
-from .models.models import Executions
+from app.models.models import Executions
 
 load_dotenv()
 

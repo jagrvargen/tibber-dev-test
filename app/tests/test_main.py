@@ -3,8 +3,8 @@ import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import Mock, patch
 
-from ..models.models import Executions, Command, Direction
-from ..db import get_session, commit_execution
+from app.models.models import Executions, Command, Direction
+from app.db import get_session, commit_execution
 from .conftest import app, client
 
 def test_move_robot_empty_commands(client):
