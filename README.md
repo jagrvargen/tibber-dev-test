@@ -30,6 +30,14 @@ docker-compose build
 docker-compose up
 ```
 
+### API Documentation
+
+Once the service is running, you can view the OpenAPI documentation by visiting:
+```
+http://localhost:5000/docs
+```
+This interactive documentation provides detailed information about all available endpoints, request/response formats, and allows you to test the API directly from your browser.
+
 ### Running Tests
 
 The project includes a test suite built with pytest. To run the tests:
