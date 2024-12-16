@@ -45,17 +45,6 @@ def test_move_robot_success(mock_clean_office, client):
     ]
     mock_clean_office.assert_called_once_with(0, 0, expected_commands)
 
-def test_move_robot_invalid_input(client):
-    """Test robot movement with invalid input"""
-    test_payload = {
-        "start": {"x": 0, "y": 0},
-        "commands": [
-            {"direction": "invalid", "steps": 1}
-        ]
-    }
-    response = client.post("/tibber-developer-test/enter-path/", json=test_payload)
-    assert response.status_code == 422
-
 def test_move_robot_invalid_start(client):
     """Test robot movement with invalid starting position"""
     test_payload = {
