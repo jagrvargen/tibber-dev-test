@@ -1,14 +1,15 @@
 from app.models.models import Command, Direction
 
+
 def clean_office(x: int, y: int, commands: list[Command]):
     """Clean the office floor and return the number of cleaned tiles"""
     cleaned_tiles = set()
     cleaned_tiles.add((x, y))
     directions = {
-            Direction.north: (-1, 0),
-            Direction.south: (1, 0),
-            Direction.east: (0, 1),
-            Direction.west: (0, -1),
+        Direction.north: (-1, 0),
+        Direction.south: (1, 0),
+        Direction.east: (0, 1),
+        Direction.west: (0, -1),
     }
     for command in commands:
         dx, dy = directions[command.direction]
@@ -17,5 +18,5 @@ def clean_office(x: int, y: int, commands: list[Command]):
             x += dx
             y += dy
             cleaned_tiles.add((x, y))
-    
+
     return len(cleaned_tiles)

@@ -4,14 +4,16 @@ from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 
 from app.db.db import SessionDependency, create_db_and_tables, commit_execution
-from app.models.models import Executions, RobotMoveRequest 
+from app.models.models import Executions, RobotMoveRequest
 from app.actions.move import clean_office
 
 app = FastAPI()
 
+
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
+
 
 @app.post("/tibber-developer-test/enter-path/")
 async def move_robot(req: RobotMoveRequest, session: SessionDependency):
@@ -22,11 +24,11 @@ async def move_robot(req: RobotMoveRequest, session: SessionDependency):
     end_time = perf_counter()
 
     execution = Executions(
-            commands=len(req.commands),
-            result=total_cleaned_tiles,
-            duration=end_time-start_time,
+        commands=len(req.commands),
+        result=total_cleaned_tiles,
+        duration=end_time - start_time,
     )
-    
+
     refreshed_execution = commit_execution(execution, session)
 
     return jsonable_encoder(refreshed_execution)

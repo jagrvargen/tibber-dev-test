@@ -18,14 +18,18 @@ DB_URL = f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}"
 
 engine = create_engine(DB_URL)
 
+
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
+
 
 def get_session():
     with Session(engine) as session:
         yield session
 
+
 SessionDependency = Annotated[Session, Depends(get_session)]
+
 
 def commit_execution(execution: Executions, session: SessionDependency):
     session.add(execution)
