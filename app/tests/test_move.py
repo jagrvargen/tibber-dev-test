@@ -1,5 +1,3 @@
-import pytest
-
 from app.actions.move import clean_office
 from app.models.models import Direction, Command
 

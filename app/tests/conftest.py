@@ -2,7 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import Mock, patch
 from app.main import app
-from app.db.db import get_session, create_db_and_tables
+from app.db.db import get_session
 
 @pytest.fixture(autouse=True)
 def mock_db():
