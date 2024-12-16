@@ -1,7 +1,7 @@
 # Tibber Technical Case Development Test
 
 ### Summary
-This is a toy microservice created as part of the interview process for a Backend Engineer position at Tibber. The project demonstrates the ability to build a simple microservice that processes movement commands and stores execution results in a PostgreSQL database.
+This is a toy microservice created as part of the interview process for a Backend Engineer position at Tibber. The project demonstrates the ability to build a simple microservice that simulates movement commands and stores execution results in a PostgreSQL database.
 
 ### Prerequisites
 - Docker
