@@ -59,7 +59,7 @@ def clean_office(x: int, y: int, commands: list[Command]) -> int:
     return cleaned_tiles
 
 
-def merge_ranges(ranges):
+def merge_ranges(ranges: list[tuple[int, int]]) -> list[tuple[int, int]]:
     sorted_ranges = sorted(ranges, key=lambda x: x[0])
     merged = [sorted_ranges[0]]
 
