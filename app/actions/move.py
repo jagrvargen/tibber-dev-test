@@ -29,8 +29,8 @@ def clean_office(x: int, y: int, commands: list[Command]) -> int:
     cleaned_tiles = 0
     # Iterate through horizontal lines, merge overlapping ones,
     # and count the lengths.
-    for curr_y, ranges in row_ranges.items():
-        merged_ranges = merge_ranges(ranges)
+    for curr_y, horizontal_ranges in row_ranges.items():
+        merged_ranges = merge_ranges(horizontal_ranges)
         row_ranges[curr_y] = merged_ranges
         for start, end in merged_ranges:
             cleaned_tiles += end - start + 1
@@ -38,14 +38,19 @@ def clean_office(x: int, y: int, commands: list[Command]) -> int:
     # Iterate through vertical lines, merge overlapping ones,
     # count the lengths, and subtract 1 for every intersecting
     # horizontal line.
-    for curr_x, vert_ranges in col_ranges.items():
-        merged_vert_ranges = merge_ranges(vert_ranges)
-        for vert_start, vert_end in merged_vert_ranges:
-            current_count = vert_end - vert_start + 1
-            for curr_y in range(vert_start, vert_end + 1):
+    for curr_x, vertical_ranges in col_ranges.items():
+        merged_vertical_ranges = merge_ranges(vertical_ranges)
+        for vertical_start, vertical_end in merged_vertical_ranges:
+            current_count = vertical_end - vertical_start + 1
+
+            # Iterate through each y coordinate on the vertical line...
+            for curr_y in range(vertical_start, vertical_end + 1):
                 if curr_y in row_ranges:
-                    for hor_start, hor_end in row_ranges[curr_y]:
-                        if hor_start <= curr_x <= hor_end:
+                    # Check through the merged horizontal ranges at this y to see if
+                    # we have any intersections. If so, we don't count this point
+                    # in our vertical range.
+                    for horizontal_start, horizontal_end in row_ranges[curr_y]:
+                        if horizontal_start <= curr_x <= horizontal_end:
                             current_count -= 1
                             break
 
